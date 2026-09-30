@@ -1,0 +1,30 @@
+name: gustaro
+description: "Identify Moldovan wines by scanning the bottle."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.13.4
+
+dependencies:
+  drift: ^2.35.0
+  flutter:
+    sdk: flutter
+  google_mlkit_text_recognition: ^0.17.1
+  image_picker: ^1.2.3
+  mobile_scanner: ^7.4.2
+  path_provider: ^2.1.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  drift_dev: ^2.35.0
+  build_runner: ^2.16.1
+  csv: ^8.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/catalog.sqlite
