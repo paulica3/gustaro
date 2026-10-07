@@ -46,16 +46,49 @@ With a free Apple ID the install expires after 7 days; run it again.
    how long detection took, and which screen the app would show.
 2. For the label: "Label: take photo" (or pick a photo). It shows the text ML
    Kit read and the best match scores, including those below the threshold.
-3. Add the bottle with the wizard (it saves to `data/` and rebuilds the
-   catalogue; see [docs/data-entry.md](docs/data-entry.md)), then reinstall:
+3. Add the bottle in the catalogue editor (see below), then reinstall the app.
+
+## Add and edit wines (local web app)
+
+The catalogue editor is a web page that runs on your Mac. Use it to add
+bottles and to edit or delete wineries, wines, years and barcodes.
+
+**Start it.** Open a terminal in the project folder and run:
 
 ```bash
-dart run tool/add_bottle.dart
+dart run tool/catalog_editor.dart
 ```
+
+Your browser opens at http://localhost:8787. If it doesn't, open that address
+yourself. Keep the terminal open while you work. The page stops working when
+the terminal is closed.
+
+**Use it.**
+- **+ New bottle**: fill in the form and press **Save bottle**. Existing
+  wineries and wines are suggested as you type, and the barcode is checked
+  for typos.
+- **List on the left**: click a winery or wine to edit it, add years or
+  barcodes, or delete.
+- Every save is checked, written to the files in `data/`, and the app
+  catalogue (`assets/catalog.sqlite`) is rebuilt. If something is wrong,
+  nothing is saved and the page tells you why.
+
+**Stop it.** Press Ctrl+C in the terminal.
+
+**Show the new wines in the app.** Reinstall it on the iPhone:
 
 ```bash
 flutter run --release
 ```
+
+Notes:
+- Only your Mac can open the page; nothing goes online.
+- If port 8787 is busy, start it on another one:
+  `dart run tool/catalog_editor.dart --port 8788`
+- If you edited the CSV files in Excel while the page was open, reload the
+  page before saving.
+- More detail, and the terminal alternative (`dart run tool/add_bottle.dart`):
+  [docs/data-entry.md](docs/data-entry.md).
 
 ## Run the tests
 
@@ -80,6 +113,7 @@ lib/
   src/scan/                  normalizer, label matcher, pure resolution, ScanService
   src/recent/                on-device recent scans
   app/                       Flutter side: opening the DBs, scan test screen
+tool/catalog_editor.dart     web page to add/edit wines (localhost only)
 tool/add_bottle.dart         add a bottle by answering questions
 tool/build_catalog.dart      CSV → assets/catalog.sqlite
 data/                        catalogue source CSVs

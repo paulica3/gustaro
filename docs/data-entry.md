@@ -1,6 +1,29 @@
 # Entering wines
 
-## The easy way: the bottle wizard
+## The easy way: the catalogue editor (web page)
+
+```bash
+dart run tool/catalog_editor.dart
+```
+
+Opens http://localhost:8787 in your browser (stop it with Ctrl+C in the
+terminal). It runs only on your Mac and only your Mac can open it.
+
+- **+ New bottle**: one form for barcode, winery, wine, year, specs and
+  Romanian texts. Existing wineries/wines autocomplete, typos get a "Did you
+  mean…?", the barcode's check digit is verified as you type. If the wine or
+  year already exists, only the new parts are added.
+- **Left list**: click a winery or wine to edit it, add or edit years and
+  barcodes, or delete (deleting a wine also deletes its years and barcodes).
+- Every save is checked with the same rules as the build script, written to
+  `data/`, and the app catalogue is rebuilt. If something is wrong, nothing is
+  saved and the problem is shown.
+- If you edit the CSV files in Excel while the page is open, reload the page
+  before saving (it refuses to overwrite your Excel changes).
+
+After changes, reinstall the app on the phone.
+
+## In the terminal: the bottle wizard
 
 ```bash
 dart run tool/add_bottle.dart
